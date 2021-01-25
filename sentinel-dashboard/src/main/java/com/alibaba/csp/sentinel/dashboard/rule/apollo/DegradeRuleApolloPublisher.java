@@ -31,13 +31,13 @@ public class DegradeRuleApolloPublisher implements DynamicRulePublisher<List<Deg
             String dateFormat = FASTDATEFORMAT.format(new Date());
 
             // 具体的流控规则id
-            String flowDataId = ApolloConfigUtil.getFlowDataId(appName);
+            String degradeDataId = ApolloConfigUtil.getDegradeDataId(appName);
             // apollo的应用服务appId
             String appId = ApolloConfigUtil.getAppIdWithAppName(appName);
 
             // 1. 修改操作，预发布
             OpenItemDTO openItemDTO = new OpenItemDTO();
-            openItemDTO.setKey(flowDataId);
+            openItemDTO.setKey(degradeDataId);
             openItemDTO.setValue(converter.convert(rules));
             openItemDTO.setComment("modify:" + dateFormat);
             openItemDTO.setDataChangeLastModifiedBy(ApolloConfig.USERID);

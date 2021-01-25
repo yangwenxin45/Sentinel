@@ -42,15 +42,15 @@ public final class ApolloConfigUtil {
         return String.format("%s%s", appName, DEGRADE_DATA_ID_POSTFIX);
     }
 
-    public static String getParamFlowDataIdPostfix(String appName) {
+    public static String getParamFlowDataId(String appName) {
         return String.format("%s%s", appName, PARAM_FLOW_DATA_ID_POSTFIX);
     }
 
-    public static String getSystemDataIdPostfix(String appName) {
+    public static String getSystemDataId(String appName) {
         return String.format("%s%s", appName, SYSTEM_DATA_ID_POSTFIX);
     }
 
-    public static String getAuthorityDataIdPostfix(String appName) {
+    public static String getAuthorityDataId(String appName) {
         return String.format("%s%s", appName, AUTHORITY_DATA_ID_POSTFIX);
     }
 

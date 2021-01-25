@@ -31,13 +31,13 @@ public class AuthorityRuleApolloPublisher implements DynamicRulePublisher<List<A
             String dateFormat = FASTDATEFORMAT.format(new Date());
 
             // 具体的流控规则id
-            String flowDataId = ApolloConfigUtil.getFlowDataId(appName);
+            String authorityDataId = ApolloConfigUtil.getAuthorityDataId(appName);
             // apollo的应用服务appId
             String appId = ApolloConfigUtil.getAppIdWithAppName(appName);
 
             // 1. 修改操作，预发布
             OpenItemDTO openItemDTO = new OpenItemDTO();
-            openItemDTO.setKey(flowDataId);
+            openItemDTO.setKey(authorityDataId);
             openItemDTO.setValue(converter.convert(rules));
             openItemDTO.setComment("modify:" + dateFormat);
             openItemDTO.setDataChangeLastModifiedBy(ApolloConfig.USERID);

@@ -23,12 +23,12 @@ public class SystemRuleApolloProvider implements DynamicRuleProvider<List<System
         ApolloOpenApiClient client = ApolloConfigUtil.createApolloOpenApiClient(appName);
         if (client != null) {
             // 具体的流控规则id
-            String flowDataId = ApolloConfigUtil.getFlowDataId(appName);
+            String systemDataId = ApolloConfigUtil.getSystemDataId(appName);
             // apollo的应用服务appId
             String appId = ApolloConfigUtil.getAppIdWithAppName(appName);
             OpenNamespaceDTO dto = client.getNamespace(appId, ApolloConfig.ENV, ApolloConfig.CLUSTERNAME, ApolloConfig.NAMESPACE);
             String rules = dto.getItems().stream()
-                    .filter(p -> p.getKey().equals(flowDataId))
+                    .filter(p -> p.getKey().equals(systemDataId))
                     .map(OpenItemDTO::getValue)
                     .findFirst().orElse("");
             return converter.convert(rules);
