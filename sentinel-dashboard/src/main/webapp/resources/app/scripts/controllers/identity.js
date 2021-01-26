@@ -1,17 +1,17 @@
 var app = angular.module('sentinelDashboardApp');
 
 app.controller('IdentityCtl', ['$scope', '$stateParams', 'IdentityService',
-  'ngDialog', 'FlowServiceV1', 'DegradeService', 'AuthorityRuleService', 'ParamFlowService', 'MachineService',
-  '$interval', '$location', '$timeout',
-  function ($scope, $stateParams, IdentityService, ngDialog,
-    FlowService, DegradeService, AuthorityRuleService, ParamFlowService, MachineService, $interval, $location, $timeout) {
+    'ngDialog', 'FlowServiceV2', 'DegradeService', 'AuthorityRuleService', 'ParamFlowService', 'MachineService',
+    '$interval', '$location', '$timeout',
+    function ($scope, $stateParams, IdentityService, ngDialog,
+              FlowService, DegradeService, AuthorityRuleService, ParamFlowService, MachineService, $interval, $location, $timeout) {
 
-    $scope.app = $stateParams.app;
+        $scope.app = $stateParams.app;
 
-    $scope.currentPage = 1;
-    $scope.pageSize = 16;
-    $scope.totalPage = 1;
-    $scope.totalCount = 0;
+        $scope.currentPage = 1;
+        $scope.pageSize = 16;
+        $scope.totalPage = 1;
+        $scope.totalCount = 0;
     $scope.identities = [];
     // 数据自动刷新频率, 默认10s
     var DATA_REFRESH_INTERVAL = 30;
@@ -95,7 +95,7 @@ app.controller('IdentityCtl', ['$scope', '$stateParams', 'IdentityService',
       FlowService.newRule(flowRuleDialogScope.currentRule).success(function (data) {
         if (data.code === 0) {
           flowRuleDialog.close();
-          let url = '/dashboard/flow/' + $scope.app;
+            let url = '/dashboard/v2/flow/' + $scope.app;
           $location.path(url);
         } else {
           alert('失败：' + data.msg);
