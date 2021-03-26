@@ -1,0 +1,7 @@
+app:
+  id: sentinel-dashboard
+apollo:
+  meta: http://10.9.25.16:8080
+  bootstrap:
+    enabled: true
+    namespaces: application

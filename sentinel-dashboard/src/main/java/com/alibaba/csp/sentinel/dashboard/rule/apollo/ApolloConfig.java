@@ -5,6 +5,7 @@ import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Configuration
 @ConfigurationProperties(prefix = "apollo.portal")
 @ComponentScan("com.alibaba.csp.sentinel.dashboard.rule.apollo")
+@RefreshScope
 public class ApolloConfig implements InitializingBean {
 
     public static String USERID = "apollo";
@@ -104,9 +106,9 @@ public class ApolloConfig implements InitializingBean {
                 String appId = items[2];
                 String thirdId = items[3];
 
-                thirdIdMap.putIfAbsent(appId, thirdId);
-                tokenMap.putIfAbsent(applicationName, token);
-                appIdMap.putIfAbsent(applicationName, appId);
+                thirdIdMap.put(appId, thirdId);
+                tokenMap.put(applicationName, token);
+                appIdMap.put(applicationName, appId);
             }
         });
     }
@@ -157,5 +159,17 @@ public class ApolloConfig implements InitializingBean {
 
     public void setNamespace(String namespace) {
         this.namespace = namespace;
+    }
+
+    @Override
+    public String toString() {
+        return "ApolloConfig{" +
+                "url='" + url + '\'' +
+                ", appNameConfigList=" + appNameConfigList +
+                ", userId='" + userId + '\'' +
+                ", env='" + env + '\'' +
+                ", clusterName='" + clusterName + '\'' +
+                ", namespace='" + namespace + '\'' +
+                '}';
     }
 }
