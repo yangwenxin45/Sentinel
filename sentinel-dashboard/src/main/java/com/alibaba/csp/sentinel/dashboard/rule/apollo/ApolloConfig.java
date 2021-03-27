@@ -1,5 +1,7 @@
 package com.alibaba.csp.sentinel.dashboard.rule.apollo;
 
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.ApiDefinitionEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.GatewayFlowRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.*;
 import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.fastjson.JSON;
@@ -88,6 +90,26 @@ public class ApolloConfig implements InitializingBean {
     @Bean
     public Converter<String, List<ParamFlowRuleEntity>> paramFlowRuleEntityDecoder() {
         return s -> JSON.parseArray(s, ParamFlowRuleEntity.class);
+    }
+
+    @Bean
+    public Converter<List<GatewayFlowRuleEntity>, String> gatewayFlowRuleEntityEncoder() {
+        return JSON::toJSONString;
+    }
+
+    @Bean
+    public Converter<String, List<GatewayFlowRuleEntity>> gatewayFlowRuleEntityDecoder() {
+        return s -> JSON.parseArray(s, GatewayFlowRuleEntity.class);
+    }
+
+    @Bean
+    public Converter<List<ApiDefinitionEntity>, String> apiDefinitionEntityEncoder() {
+        return JSON::toJSONString;
+    }
+
+    @Bean
+    public Converter<String, List<ApiDefinitionEntity>> apiDefinitionEntityDecoder() {
+        return s -> JSON.parseArray(s, ApiDefinitionEntity.class);
     }
 
     @Override

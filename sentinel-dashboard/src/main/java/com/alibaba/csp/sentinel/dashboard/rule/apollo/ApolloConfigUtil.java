@@ -17,6 +17,10 @@ public final class ApolloConfigUtil {
 
     private static final String AUTHORITY_RULE_TYPE = "authority";
 
+    private static final String GATEWAY_FLOW_RULE_TYPE = "gateway-flow";
+
+    private static final String API_DEFINITION_TYPE = "api-definition";
+
     // *-flow-rules
     private static final String FLOW_DATA_ID_POSTFIX = "-" + FLOW_RULE_TYPE + "-rules";
 
@@ -31,6 +35,12 @@ public final class ApolloConfigUtil {
 
     // *-authority-rules
     private static final String AUTHORITY_DATA_ID_POSTFIX = "-" + AUTHORITY_RULE_TYPE + "-rules";
+
+    // *-gateway-flow-rules
+    private static final String GATEWAY_DATA_ID_POSTFIX = "-" + GATEWAY_FLOW_RULE_TYPE + "-rules";
+
+    // *-api-definition-rules
+    private static final String API_DEFINITION_DATA_ID_POSTFIX = "-" + API_DEFINITION_TYPE + "-rules";
 
     private static volatile ConcurrentHashMap<String, ApolloOpenApiClient> APOLLOOPENAPICLIENTMAP = new ConcurrentHashMap<>();
 
@@ -52,6 +62,14 @@ public final class ApolloConfigUtil {
 
     public static String getAuthorityDataId(String appName) {
         return String.format("%s%s", appName, AUTHORITY_DATA_ID_POSTFIX);
+    }
+
+    public static String getGatewayFlowDataId(String appName) {
+        return String.format("%s%s", appName, GATEWAY_DATA_ID_POSTFIX);
+    }
+
+    public static String getApiDefinitionDataId(String appName) {
+        return String.format("%s%s", appName, API_DEFINITION_DATA_ID_POSTFIX);
     }
 
     public static ApolloOpenApiClient createApolloOpenApiClient(String appName) {
